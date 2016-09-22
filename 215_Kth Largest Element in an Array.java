@@ -1,3 +1,5 @@
+// Solution one
+
 public class Solution {
     private int findKthHelper(int[] nums, int k, int begin, int end) {
         if (end - begin == 1) {
@@ -31,5 +33,22 @@ public class Solution {
     
     public int findKthLargest(int[] nums, int k) {
         return findKthHelper(nums, k, 0, nums.length);
+    }
+}
+
+// Solution two
+public class Solution {
+    public int findKthLargest(int[] nums, int k) {
+        PriorityQueue<Integer> minHeap = new PriorityQueue<Integer>();
+        for (int i = 0; i < nums.length; i++) {
+            if (minHeap.size() < k) {
+                minHeap.offer(nums[i]);
+            } else {
+                minHeap.offer(nums[i]);
+                minHeap.poll();
+            }
+        }
+        
+        return minHeap.poll();
     }
 }
